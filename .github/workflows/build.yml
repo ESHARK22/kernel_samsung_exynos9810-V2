@@ -36,6 +36,8 @@ jobs:
           env:
             DEFCONFIG: ${{ matrix.DEFCONFIG }}
           run: |
+            mkdir release_out
+
             export ARCH=arm64 
             export CC=clang
             export LD=ld.lld
@@ -47,6 +49,7 @@ jobs:
 
             clang --version
             
+            echo "$CLANG_TRIPLE"
             make O=out "-j$(nproc)" $DEFCONFIG  2>&1 | tee release_out/log_make.txt
-            make O=out "-j$(nproc)" 2>&1 | tee release_out/log_make.txt
+            make O=out "-j$(nproc)"             2>&1 | tee release_out/log_make.txt
         
