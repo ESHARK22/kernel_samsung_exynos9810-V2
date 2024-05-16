@@ -25,9 +25,9 @@ jobs:
             sudo apt install -y llvm-14 clang-14 bc
 
             # Link llvm 14 to the defaults
-            sudo ln -sf /usr/bin/clang-14 /usr/bin/clang
-            sudo ln -sf /usr/bin/ld.lld-14 /usr/bin/ld.lld
-            sudo ln -sf /usr/bin/llvm-nm-14 /usr/bin/llvm-nm
+            for f in /usr/bin/*-14
+              do sudo ln -sf "$f" "${f::-3}"
+            done
 
             export PATH=/usr/bin/:$PATH
 
