@@ -30,6 +30,6 @@ jobs:
 
         - name: Test clang
           run: |
-            clang-14 --version
-            whereis clang-14
+            clang- --version
+            whereis clang
       
