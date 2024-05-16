@@ -36,7 +36,6 @@ jobs:
           env:
             DEFCONFIG: ${{ matrix.DEFCONFIG }}
           run: |
-            mkdir release_out
             ls
             clang --version
             
