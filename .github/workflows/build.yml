@@ -28,8 +28,19 @@ jobs:
         - name: Install gcc dependencies
           run: sudo apt install -y gcc-arm-linux-gnueabi gcc-aarch64-linux-gnu
 
-        - name: Test clang
+        - name: Build
           run: |
+            export ARCH=arm64 
+            export CC=clang
+            export LD=ld.lld
+            export LLVM=1
+            export LLVM_IAS=1
+            export CLANG_TRIPLE=aarch64-linux-gnu-
+            export CROSS_COMPILE=aarch64-linux-gnu-
+            export CROSS_COMPILE_ARM32="arm-linux-gnueabi-"
+
             clang --version
-            whereis clang
-      
+            
+            make O=out "-j$(nproc)" $DEFCONFIG  2>&1 | tee release_out/log_make.txt
+            make O=out "-j$(nproc)" 2>&1 | tee release_out/log_make.txt
+        
