@@ -27,6 +27,8 @@ jobs:
             # Link llvm 14 to the defaults
             sudo ln -sf /usr/bin/clang-14 /usr/bin/clang
             sudo ln -sf /usr/bin/ld.lld-14 /usr/bin/ld.lld
+            sudo ln -sf /usr/bin/llvm-nm-14 /usr/bin/llvm-nm
+
             export PATH=/usr/bin/:$PATH
 
         - name: Install gcc dependencies
