@@ -11,6 +11,8 @@ jobs:
         - name: Install clang 14
           run: |
             sudo apt remove -y *clang* 
+            sudo apt autoremove -y
+            
             wget https://apt.llvm.org/llvm.sh
             chmod +x llvm.sh
             sudo ./llvm.sh 14
