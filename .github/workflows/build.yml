@@ -12,7 +12,7 @@ jobs:
           run: |
             sudo apt remove -y *clang* 
             sudo apt autoremove -y
-            
+
             wget https://apt.llvm.org/llvm.sh
             chmod +x llvm.sh
             sudo ./llvm.sh 14
@@ -22,5 +22,7 @@ jobs:
           run: sudo apt install -y gcc-arm-linux-gnueabi gcc-aarch64-linux-gnu
 
         - name: Test clang
-          run: clang --version
-            
+          run: |
+            clang --version
+            whereis clang
+      
