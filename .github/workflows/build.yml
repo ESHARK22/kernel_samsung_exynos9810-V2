@@ -32,6 +32,9 @@ jobs:
         - name: Install gcc dependencies
           run: sudo apt install -y gcc-arm-linux-gnueabi gcc-aarch64-linux-gnu
 
+        - name: Check out kernel source
+          uses: actions/checkout@v4
+
         - name: Build
           env:
             DEFCONFIG: ${{ matrix.DEFCONFIG }}
