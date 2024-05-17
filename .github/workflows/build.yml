@@ -14,10 +14,6 @@ jobs:
     steps:
         - name: Install clang 14
           run: |
-            # Remove any preinstaled clang versions
-            sudo apt remove -y *clang* 
-            sudo apt autoremove -y
-
             # Install our clang version
             wget https://apt.llvm.org/llvm.sh
             chmod +x llvm.sh
