@@ -63,8 +63,13 @@ jobs:
       - name: Compress build artifacts
         run: tar -cvf release_out/kernel.tar.gz out/
 
+      - name: Copy usefull artifacts (dtb.img, Image)
+        run: |
+          cp out/arch/arm64/boot/dtb.img release_out/dtb.img
+          cp out/arch/arm64/boot/Image   release_out/Image
+          cp out/arch/arm64/boot/Image.gz   release_out/Image.gz
+
       - name: Archive production artifacts
-        id: ArtifactUpload
         uses: actions/upload-artifact@v4
         if: success() || failure()
         with:
@@ -82,8 +87,29 @@ jobs:
       
       - name: Fetch kernel build archives
         uses: actions/download-artifact@v4
+        with:
+          path: kernel_artifacts/
 
-      - name: ls
-        run: ls -la
-      - name: find
-        run: find
+      - name: Unpack kernel artifacts into ak3
+        run: |
+          for dir in kernel_artifacts/* ; do
+            dir_arr=(${dir//_/ })
+            
+            device=${dir_arr[0]}
+            root=${dir_arr[2]}
+
+            echo $device-$root
+
+            cp $dir/dtb.img Exynos9810_AK3_Template/Dtb/$device/dtb.img
+            cp $dir/Image   Exynos9810_AK3_Template/Dtb/$device/zImage
+
+          done
+
+      - name: Package ak3
+        run: zip -r9 ${{github.ref}}_${{github.run_id}}.zip * -x .git README.md *placeholder
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        if: success() || failure()
+        with:
+          path: ${{github.ref}}_${{github.run_id}}.zip
