@@ -101,7 +101,7 @@ jobs:
             echo $device-$root
 
             cp $dir/dtb.img Exynos9810_AK3_Template/Dtb/$device/dtb.img
-            cp $dir/Image   Exynos9810_AK3_Template/Dtb/$device/zImage
+            cp $dir/Image   Exynos9810_AK3_Template/Kernel/$device/zImage
 
           done
 
