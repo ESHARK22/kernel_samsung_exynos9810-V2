@@ -10,6 +10,7 @@ jobs:
     strategy:
       matrix:
         ROOT: [none, magisk, kernelsu]
+        DEVICE: [crownlte, starlte, star2lte]
         
         include:
           - DEVICE: crownlte  
