@@ -121,3 +121,5 @@ kernel/configs/android-*.cfg
 
 # Do not ignore .github forlder, used for ci
 !.github
+out/
+release_out/
