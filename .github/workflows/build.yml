@@ -64,10 +64,26 @@ jobs:
         run: tar -cvf release_out/kernel.tar.gz out/
 
       - name: Archive production artifacts
+        id: ArtifactUpload
         uses: actions/upload-artifact@v4
         if: success() || failure()
         with:
           name: ${{ env.DEVICE }}_root_${{ env.ROOT }}
           path: release_out/
   
-  
+  Package_AK3:
+    runs-on: [self-hosted, linux, x64]
+    needs: KernelBuild
+    if: ${{ success() }}
+
+    steps:
+      - name: Clone AK3 template
+        run: git clone https://github.com/ESHARK22/Exynos9810_AK3_Template
+      
+      - name: Fetch kernel build archives
+        uses: actions/download-artifact@v4
+
+      - name: ls
+        run: ls -la
+      - name: find
+        run: find
