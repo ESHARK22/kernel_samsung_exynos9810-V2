@@ -16,8 +16,8 @@ jobs:
           - DEVICE: crownlte  
             DEFCONFIG: exynos9810-crownlte_defconfig
 
-          # - DEVICE: starlte  
-          #   DEFCONFIG: exynos9810-starlte_defconfig
+          - DEVICE: starlte  
+            DEFCONFIG: exynos9810-starlte_defconfig
 
           # - DEVICE: star2lte  
           #   DEFCONFIG: exynos9810-star2lte_defconfig
