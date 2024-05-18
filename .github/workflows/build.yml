@@ -9,7 +9,7 @@ jobs:
 
     strategy:
       matrix:
-        DEVICE: [crownlte]
+        DEVICE: [crownlte, starlte]
         ROOT: [kernelsu]
 
         include:
