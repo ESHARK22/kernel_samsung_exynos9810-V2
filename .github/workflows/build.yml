@@ -1,7 +1,7 @@
 name: Kernel Build
 run-name: Kernel Build caused by ${{github.event_name}} - ${{github.actor}} 
 
-on: [push]
+on: [push, workflow_dispatch, workflow_call]
 
 jobs:
   KernelBuild:
