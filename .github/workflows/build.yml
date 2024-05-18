@@ -9,11 +9,21 @@ jobs:
 
     strategy:
       matrix:
-        DEFCONFIG: [exynos9810-crownlte_defconfig] #[exynos9810-crownlte_defconfig, exynos9810-starlte_defconfig, exynos9810-star2lte_defconfig]
-        ROOT: [none]  #[none, magisk, kernelsu]
+        ROOT: [none, magisk, kernelsu]
+        
+        include:
+          - DEVICE: crownlte  
+            DEFCONFIG: exynos9810-crownlte_defconfig
+
+          - DEVICE: starlte  
+            DEFCONFIG: exynos9810-starlte_defconfig
+
+          - DEVICE: star2lte  
+            DEFCONFIG: exynos9810-star2lte_defconfig
 
     env:
       DEFCONFIG: ${{ matrix.DEFCONFIG }}
+      DEVICE:    ${{ matrix.DEVICE    }}
       ROOT:      ${{ matrix.ROOT      }}
 
     steps:
@@ -52,5 +62,5 @@ jobs:
         uses: actions/upload-artifact@v4
         if: success() || failure()
         with:
-          name: $DEFCONFIG_root_$ROOT
+          name: ${{ env.DEVICE }}_root_${{ env.ROOT }}
           path: release_out/
